@@ -15,7 +15,8 @@ class Listing < ActiveRecord::Base
       validates :price, numericality: { grather_than: 0 }
       #this line will validate that no price will be zero and positive
       validates_attachment_presence :image
-      #this line will validate the image field, and will not permit a blank field
+            #this line will validate the image field, and will not permit a blank field
+      belongs_to :user
 end
 
 #validates_attachment_content_type :image, :content_type => { :content_type => %w(image/jpeg image/jpg image/png) } 
