@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
+  
   devise_for :users
-  resources :listings
+# ths line will give us the url for each product for orders
+  resources :listings do
+    resources :orders
+end
 
   get 'pages/about'
   get 'seller' => "listings#seller"

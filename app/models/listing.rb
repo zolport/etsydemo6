@@ -17,6 +17,8 @@ class Listing < ActiveRecord::Base
       validates_attachment_presence :image
             #this line will validate the image field, and will not permit a blank field
       belongs_to :user
+      # this liks listing to orders
+      has_many :orders
 end
 
 #validates_attachment_content_type :image, :content_type => { :content_type => %w(image/jpeg image/jpg image/png) } 
