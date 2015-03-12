@@ -3,16 +3,16 @@ class OrdersController < ApplicationController
   #this will make sure that only user that are signed in will be able to place orders
   before_action :authenticate_user!
 
-  # GET /orders
-  # GET /orders.json
-  def index
-    @orders = Order.all
+# We want to make sure that all the orders are currently to the user. The .order("created_at" is for displaying
+# those orders when thay where created in descinding order
+ def sales
+    @orders = Order.all.where(seller: current_user).order("created_at DESC")
   end
 
-  # GET /orders/1
-  # GET /orders/1.json
-  def show
+  def purchases
+    @orders = Order.all.where(buyer: current_user).order("created_at DESC")
   end
+
 
   # GET /orders/new
   def new
@@ -20,10 +20,7 @@ class OrdersController < ApplicationController
     @listing = Listing.find(params[:listing_id])
   end
 
-  # GET /orders/1/edit
-  def edit
-  end
-
+  
   # POST /orders
   # POST /orders.json
   def create
@@ -50,31 +47,7 @@ class OrdersController < ApplicationController
     end
   end
 
-  # PATCH/PUT /orders/1
-  # PATCH/PUT /orders/1.json
-  def update
-    respond_to do |format|
-      if @order.update(order_params)
-        format.html { redirect_to @order, notice: 'Order was successfully updated.' }
-        format.json { render :show, status: :ok, location: @order }
-      else
-        format.html { render :edit }
-        format.json { render json: @order.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /orders/1
-  # DELETE /orders/1.json
-  def destroy
-    @order.destroy
-    respond_to do |format|
-      format.html { redirect_to orders_url, notice: 'Order was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
-
-  private
+   private
     # Use callbacks to share common setup or constraints between actions.
     def set_order
       @order = Order.find(params[:id])
