@@ -1,5 +1,5 @@
+# source 'https://code.stripe.com'
 source 'https://rubygems.org'
-
 ruby "2.1.5"
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
@@ -18,6 +18,7 @@ gem "paperclip", "~> 4.2"
 gem "paperclip-dropbox", ">= 1.1.7"
 gem "figaro"
 gem 'devise'
+# gem 'stripe'
 # Use Unicorn as the app server
 # gem 'unicorn'
 

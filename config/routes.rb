@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
   
+  resources :orders
+
   devise_for :users
 # ths line will give us the url for each product for orders
   resources :listings do
-    resources :orders, only: [:new, :created]
+    resources :orders
 end
 
   get 'pages/about'
