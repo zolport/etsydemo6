@@ -30,5 +30,9 @@
 
 <br>
 <% if user_signed_in? %>
-   <%= link_to 'New Listing', new_listing_path, class:"btn btn-link" %>
+<%= link_to new_listing_path, class: "btn btn-primary", data: { no_turbolink: true } do %>
+  <i class="glyphicon glyphicon-plus"></i> New Listing
+<% end %>
+
+   <%#= link_to 'New Listing', new_listing_path, class:"btn btn-link", data: { no_turbolink: true } %>
 <% end %>
